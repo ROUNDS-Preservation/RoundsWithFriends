@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
-using UnboundLib;
+
 using System.Collections;
 using TMPro;
 using RWF.UI;
-using UnboundLib.GameModes;
+
 using Photon.Pun;
-using UnboundLib.Extensions;
+using Unbound.Core;
+using Unbound.Core.Extensions;
+using Unbound.Gamemodes;
 
 namespace RWF.Patches
 {

@@ -1,8 +1,10 @@
-﻿using UnboundLib;
-using UnboundLib.GameModes;
+﻿
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Unbound.Core;
+using Unbound.Gamemodes;
 using UnityEngine;
 
 namespace RWF.GameModes

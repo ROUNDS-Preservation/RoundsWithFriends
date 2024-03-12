@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnboundLib.GameModes;
+using Unbound.Gamemodes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using RWF.Patches;
-using UnboundLib.GameModes;
+
 using InControl;
 using RWF.UI;
-using UnboundLib;
-using UnboundLib.Networking;
-using UnboundLib.Utils;
+using Unbound.Core.Networking;
+using Unbound.Core;
+using Unbound.Core.Utils;
 
 namespace RWF
 {

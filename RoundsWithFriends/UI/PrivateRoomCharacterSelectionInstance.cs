@@ -2,16 +2,18 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnboundLib.GameModes;
+
 using InControl;
 using RWF.Patches;
 using System.Linq;
 using Photon.Pun;
-using UnboundLib;
+
 using System.Collections;
 using UnityEngine.UI.ProceduralImage;
 using System.Reflection;
-using UnboundLib.Utils;
+using Unbound.Core;
+using Unbound.Core.Utils;
+using Unbound.Gamemodes;
 
 namespace RWF.UI
 {
@@ -250,18 +252,18 @@ namespace RWF.UI
             for (int i = 0; i < this.buttons.Length; i++)
             {
                 this.buttons[i].transform.GetChild(4).gameObject.SetActive(true);
-                this.buttons[i].transform.GetChild(4).GetChild(0).gameObject.SetActive(this.isReady || this.created);
-                this.buttons[i].transform.GetChild(4).GetChild(1).gameObject.SetActive(this.isReady || this.created);
+                this.buttons[i].transform.GetChild(4).GetChild(0).gameObject.SetActive(this.GetFieldValue<bool>("isReady") || this.created);
+                this.buttons[i].transform.GetChild(4).GetChild(1).gameObject.SetActive(this.GetFieldValue<bool>("isReady") || this.created);
                 foreach (Graphic graphic in this.buttons[i].transform.GetChild(4).GetChild(0).GetComponentsInChildren<Graphic>(true))
                 {
-                    graphic.color = this.created ? Colors.Transparent(Colors.createdColor) : this.isReady ? Colors.Transparent(Colors.readycolor) : Color.clear;
+                    graphic.color = this.created ? Colors.Transparent(Colors.createdColor) : this.GetFieldValue<bool>("isReady") ? Colors.Transparent(Colors.readycolor) : Color.clear;
                 }
                 foreach (Graphic graphic in this.buttons[i].transform.GetChild(4).GetChild(1).GetComponentsInChildren<Graphic>(true))
                 {
-                    graphic.color = this.created ? Colors.Transparent(Colors.createdColor) : this.isReady ? Colors.Transparent(Colors.readycolor) : Color.clear;
+                    graphic.color = this.created ? Colors.Transparent(Colors.createdColor) : this.GetFieldValue<bool>("isReady") ? Colors.Transparent(Colors.readycolor) : Color.clear;
                 }
-                this.buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().text = this.created ? "IN GAME" : this.isReady ? "READY" : "";
-                this.buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().color = this.created ? Colors.createdColor : this.isReady ? Colors.readycolor : Colors.joinedcolor;
+                this.buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().text = this.created ? "IN GAME" : this.GetFieldValue<bool>("isReady") ? "READY" : "";
+                this.buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().color = this.created ? Colors.createdColor : this.GetFieldValue<bool>("isReady") ? Colors.readycolor : Colors.joinedcolor;
             }
         }
         public void Created()
@@ -297,7 +299,7 @@ namespace RWF.UI
                     this.ChangeToTeam(this.colorID);
                 }
             }
-            if (!this.currentPlayer.IsMine || !this.enableInput || this.isReady) { return; }
+            if (!this.currentPlayer.IsMine || !this.enableInput || this.GetFieldValue<bool>("isReady")) { return; }
 
             HoverEvent component = this.buttons[this.currentlySelectedFace].GetComponent<HoverEvent>();
             if (this.currentButton != component)

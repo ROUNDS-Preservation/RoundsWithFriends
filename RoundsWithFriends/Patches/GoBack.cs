@@ -1,7 +1,8 @@
 ﻿using HarmonyLib;
 using InControl;
+using Unbound.Gamemodes;
 using UnityEngine;
-using UnboundLib.GameModes;
+
 
 namespace RWF.Patches
 {

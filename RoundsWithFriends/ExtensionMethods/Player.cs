@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using UnboundLib;
+
 using Photon.Pun;
-using UnboundLib.Extensions;
+using Unbound.Core;
+using Unbound.Core.Extensions;
+
 // ReSharper disable NotAccessedField.Local
 
 namespace RWF

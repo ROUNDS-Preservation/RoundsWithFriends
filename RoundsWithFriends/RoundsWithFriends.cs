@@ -6,9 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
-using UnboundLib;
-using UnboundLib.GameModes;
-using UnboundLib.Networking;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,9 +13,12 @@ using Photon.Pun.UtilityScripts;
 using ExitGames.Client.Photon;
 using Jotunn.Utils;
 using RWF.UI;
-using On;
-using UnboundLib.Utils.UI;
 using System.Linq;
+using Unbound.Gamemodes;
+using Unbound.Core.Networking;
+using Unbound.Core;
+using Unbound.Core.Utils.UI;
+using Unbound.Core.Utils;
 
 namespace RWF
 {
@@ -122,7 +122,7 @@ namespace RWF
         }
 
         public const int MaxPlayersHardLimit = 32;
-        public static int MaxColorsHardLimit => UnboundLib.Utils.ExtraPlayerSkins.numberOfSkins;
+        public static int MaxColorsHardLimit => ExtraPlayerSkins.numberOfSkins;
         public const int MaxCharactersPerClientHardLimit = 2;
 
         public const string PlayersRequiredToStartGameKey = "playersRequiredToStartGame";
@@ -198,10 +198,10 @@ namespace RWF
         public void Start()
         {
             // register credits with unbound
-            Unbound.RegisterCredits(RWFMod.ModName, new string[] { "Tilastokeskus (Project creation, 4 player support, Deathmatch, Team Deathmatch, UI, Fair pick orders)", "Pykess (> 4 player support, multiple players per client, additional player colors, disconnect handling, UI)", "BossSloth (Gamemode selection UI)" }, new string[] { "github", "Support Tilastokeskus", "Support Pykess", "Support BossSloth" }, new string[] { "https://github.com/olavim/RoundsWithFriends", "https://www.buymeacoffee.com/tilastokeskus", "https://ko-fi.com/pykess", "https://www.buymeacoffee.com/BossSloth" });
+            UnboundCore.RegisterCredits(RWFMod.ModName, new string[] { "Tilastokeskus (Project creation, 4 player support, Deathmatch, Team Deathmatch, UI, Fair pick orders)", "Pykess (> 4 player support, multiple players per client, additional player colors, disconnect handling, UI)", "BossSloth (Gamemode selection UI)" }, new string[] { "github", "Support Tilastokeskus", "Support Pykess", "Support BossSloth" }, new string[] { "https://github.com/olavim/RoundsWithFriends", "https://www.buymeacoffee.com/tilastokeskus", "https://ko-fi.com/pykess", "https://www.buymeacoffee.com/BossSloth" });
 
             // add GUI to modoptions menu
-            Unbound.RegisterMenu(RWFMod.ModName, () => { }, this.GUI, null, false);
+            UnboundCore.RegisterMenu(RWFMod.ModName, () => { }, this.GUI, null, false);
 
             this.soundEnabled = new Dictionary<string, bool>();
             this.gmInitialized = new Dictionary<string, bool>();
@@ -209,7 +209,7 @@ namespace RWF
             SceneManager.sceneLoaded += this.OnSceneLoaded;
             this.ExecuteAfterFrames(1, ArtHandler.instance.NextArt);
 
-            Unbound.RegisterHandshake(ModId, () =>
+            UnboundCore.RegisterHandshake(ModId, () =>
             {
                 PhotonNetwork.LocalPlayer.SetModded();
             });
@@ -249,7 +249,8 @@ namespace RWF
                 PhotonPeer.RegisterType(typeof(DebugOptions), 77, DebugOptions.Serialize, DebugOptions.Deserialize);
             }
             PhotonPeer.RegisterType(typeof(LobbyCharacter), 78, LobbyCharacter.Serialize, LobbyCharacter.Deserialize);
-
+            //TODO: fix beta text
+            /*
             // add beta text
             if (BETA) { BetaTextHandler.AddBetaText(true); }
 
@@ -260,7 +261,7 @@ namespace RWF
                 // add beta text
                 if (BETA) { BetaTextHandler.AddBetaText(true); }
             };
-
+            */
 
             // load the assetbundle for the gamemode ui
             RWFMod.gmUIBundle = AssetUtils.LoadAssetBundleFromResources("rwf_lobbyui", typeof(RWFMod).Assembly);

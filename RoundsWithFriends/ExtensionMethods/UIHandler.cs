@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using TMPro;
-using UnboundLib;
+using Unbound.Core;
 
 namespace RWF
 {

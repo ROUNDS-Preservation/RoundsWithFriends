@@ -8,13 +8,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TMPro;
-using UnboundLib;
-using UnboundLib.GameModes;
-using UnboundLib.Networking;
+
+
+
 using UnityEngine;
 using UnityEngine.UI;
 using RWF.UI;
-using UnboundLib.Utils.UI;
+
+using Unbound.Core.Networking;
+using Unbound.Core;
+using Unbound.Gamemodes;
+using Unbound.Core.Utils.UI;
 
 namespace RWF
 {
@@ -412,7 +416,7 @@ namespace RWF
 
             mainPageGo.AddComponent<RectTransform>();
             this.MainPage = mainPageGo.AddComponent<ListMenuPage>();
-            this.MainPage.firstSelected = inviteListButton;
+            this.MainPage.SetFieldValue("firstSelected", inviteListButton);
             this.MainPage.Close();
         }
 

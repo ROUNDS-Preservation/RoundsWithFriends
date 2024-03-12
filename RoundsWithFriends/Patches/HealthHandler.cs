@@ -1,10 +1,11 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 using System.Collections.Generic;
-using UnboundLib;
+
 using System.Reflection.Emit;
 using System.Linq;
 using System;
+using Unbound.Core;
 
 namespace RWF.Patches
 {
@@ -21,8 +22,8 @@ namespace RWF.Patches
             var list = instructions.ToList();
             var newInstructions = new List<CodeInstruction>();
 
-            var f_simulated = UnboundLib.ExtensionMethods.GetFieldInfo(typeof(PlayerVelocity), "simulated");
-            var m_isCeaseFire = UnboundLib.ExtensionMethods.GetMethodInfo(typeof(HealthHandler_Patch_TakeForce), "IsCeaseFire");
+            var f_simulated = ExtensionMethods.GetFieldInfo(typeof(PlayerVelocity), "simulated");
+            var m_isCeaseFire = ExtensionMethods.GetMethodInfo(typeof(HealthHandler_Patch_TakeForce), "IsCeaseFire");
 
             for (int i = 0; i < list.Count; i++) {
                 if (list[i].LoadsField(f_simulated) && list[i + 1].opcode == OpCodes.Brtrue) {

@@ -5,6 +5,7 @@ using HarmonyLib;
 using UnityEngine;
 using System.Reflection.Emit;
 using Photon.Pun;
+using Unbound.Core;
 
 namespace RWF.Patches
 {
@@ -21,8 +22,8 @@ namespace RWF.Patches
         }
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            var p_actorID = UnboundLib.ExtensionMethods.GetPropertyInfo(typeof(PhotonView), "ControllerActorNr");
-            var m_uniqueID = UnboundLib.ExtensionMethods.GetMethodInfo(typeof(ApplyCardStats_Patch_Pick), nameof(ApplyCardStats_Patch_Pick.GetPlayerUniqueID));
+            var p_actorID = ExtensionMethods.GetPropertyInfo(typeof(PhotonView), "ControllerActorNr");
+            var m_uniqueID = ExtensionMethods.GetMethodInfo(typeof(ApplyCardStats_Patch_Pick), nameof(ApplyCardStats_Patch_Pick.GetPlayerUniqueID));
 
             foreach (var ins in instructions)
             {

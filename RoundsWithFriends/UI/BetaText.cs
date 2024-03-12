@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using TMPro;
-using UnboundLib;
+using Unbound.Core;
 
 namespace RWF.UI
 {

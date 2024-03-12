@@ -1,5 +1,5 @@
 ﻿using HarmonyLib;
-using UnboundLib;
+using Unbound.Core;
 
 namespace RWF.Patches
 {

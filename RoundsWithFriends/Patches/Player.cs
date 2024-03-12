@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
-using UnboundLib;
+
 using UnityEngine;
 using System.Reflection.Emit;
 using RWF.UI;
 using Photon.Pun;
+using Unbound.Core;
 
 namespace RWF.Patches
 {
@@ -23,8 +24,8 @@ namespace RWF.Patches
 
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            var m_CallPlayerJoinedOffline = UnboundLib.ExtensionMethods.GetMethodInfo(typeof(Player_Patch_Start), nameof(Player_Patch_Start.CallPlayerJoinedOffline));
-            var m_PlayerJoined = UnboundLib.ExtensionMethods.GetMethodInfo(typeof(PlayerManager), nameof(PlayerManager.PlayerJoined));
+            var m_CallPlayerJoinedOffline = ExtensionMethods.GetMethodInfo(typeof(Player_Patch_Start), nameof(Player_Patch_Start.CallPlayerJoinedOffline));
+            var m_PlayerJoined = ExtensionMethods.GetMethodInfo(typeof(PlayerManager), nameof(PlayerManager.PlayerJoined));
 
             foreach (var ins in instructions)
             {
@@ -83,8 +84,8 @@ namespace RWF.Patches
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
             // Somewhy the AssignTeamID method assigns playerID to teamID when player joins a room the second time
-            var f_playerID = UnboundLib.ExtensionMethods.GetFieldInfo(typeof(Player), "playerID");
-            var f_teamID = UnboundLib.ExtensionMethods.GetFieldInfo(typeof(Player), "teamID");
+            var f_playerID = ExtensionMethods.GetFieldInfo(typeof(Player), "playerID");
+            var f_teamID = ExtensionMethods.GetFieldInfo(typeof(Player), "teamID");
 
             foreach (var ins in instructions) {
                 if (ins.LoadsField(f_playerID)) {

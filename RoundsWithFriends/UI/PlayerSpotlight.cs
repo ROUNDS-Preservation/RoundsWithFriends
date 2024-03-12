@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using UnboundLib;
+
 using UnityEngine.UI;
 using UnityEngine.Rendering;
-using UnboundLib.GameModes;
+using Unbound.Core;
 
 namespace RWF.UI
 {

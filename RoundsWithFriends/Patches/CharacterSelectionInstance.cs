@@ -1,14 +1,16 @@
 ﻿using HarmonyLib;
-using UnboundLib.GameModes;
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using RWF.UI;
-using UnboundLib;
+
 using System.Collections.Generic;
 using System.Linq;
-using UnboundLib.Extensions;
-using UnboundLib.Utils;
+using Unbound.Core;
+using Unbound.Core.Extensions;
+using Unbound.Gamemodes;
+using Unbound.Core.Utils;
 
 namespace RWF.Patches
 {
@@ -52,7 +54,7 @@ namespace RWF.Patches
             int numPlayers = 0;
 
             for (int i = 0; i < ___selectors.Length; i++) {
-                if (___selectors[i].isReady) {
+                if (___selectors[i].GetFieldValue<bool>("isReady")) {
                     numReady++;
                 }
                 if (___selectors[i].currentPlayer) {
@@ -93,18 +95,18 @@ namespace RWF.Patches
             __instance.getReadyObj.GetComponent<TextMeshProUGUI>().text = "";
             for (int i = 0; i< ___buttons.Length; i++)
             {
-                ___buttons[i].transform.GetChild(4).GetChild(0).gameObject.SetActive(__instance.isReady);
-                ___buttons[i].transform.GetChild(4).GetChild(1).gameObject.SetActive(__instance.isReady);
+                ___buttons[i].transform.GetChild(4).GetChild(0).gameObject.SetActive(__instance.GetFieldValue<bool>("isReady"));
+                ___buttons[i].transform.GetChild(4).GetChild(1).gameObject.SetActive(__instance.GetFieldValue<bool>("isReady"));
                 foreach (Graphic graphic in ___buttons[i].transform.GetChild(4).GetChild(0).GetComponentsInChildren<Graphic>(true))
                 {
-                    graphic.color = __instance.isReady ? Colors.Transparent(Colors.readycolor) : Color.clear;
+                    graphic.color = __instance.GetFieldValue<bool>("isReady") ? Colors.Transparent(Colors.readycolor) : Color.clear;
                 }
                 foreach (Graphic graphic in ___buttons[i].transform.GetChild(4).GetChild(1).GetComponentsInChildren<Graphic>(true))
                 {
-                    graphic.color = __instance.isReady ? Colors.Transparent(Colors.readycolor) : Color.clear;
+                    graphic.color = __instance.GetFieldValue<bool>("isReady") ? Colors.Transparent(Colors.readycolor) : Color.clear;
                 }
-                ___buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().text = __instance.isReady ? "READY" : $"{(GameModeManager.CurrentHandler.AllowTeams ? "TEAM " : "")}{ExtraPlayerSkins.GetTeamColorName(__instance.currentPlayer.colorID()).ToUpper()}";
-                ___buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().color = __instance.isReady ? Colors.readycolor : Colors.joinedcolor;
+                ___buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().text = __instance.GetFieldValue<bool>("isReady") ? "READY" : $"{(GameModeManager.CurrentHandler.AllowTeams ? "TEAM " : "")}{ExtraPlayerSkins.GetTeamColorName(__instance.currentPlayer.colorID()).ToUpper()}";
+                ___buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().color = __instance.GetFieldValue<bool>("isReady") ? Colors.readycolor : Colors.joinedcolor;
             }
         }
     }

@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI.ProceduralImage;
-using UnboundLib;
+
 using System.Collections.Generic;
-using UnboundLib.Extensions;
+using Unbound.Core;
+using Unbound.Core.Extensions;
 
 namespace RWF
 {

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Linq;
 using System;
+using Unbound.Core;
 
 namespace RWF.Patches
 {
@@ -21,8 +22,8 @@ namespace RWF.Patches
 
             int faceIdx = -1;
 
-            var m_getLocalID = UnboundLib.ExtensionMethods.GetMethodInfo(typeof(CardChoiceVisuals_Patch_Show), nameof(CardChoiceVisuals_Patch_Show.GetLocalIDFromPlayerID));
-            var f_selectedPlayerFaces = UnboundLib.ExtensionMethods.GetFieldInfo(typeof(CharacterCreatorHandler), "selectedPlayerFaces");
+            var m_getLocalID = ExtensionMethods.GetMethodInfo(typeof(CardChoiceVisuals_Patch_Show), nameof(CardChoiceVisuals_Patch_Show.GetLocalIDFromPlayerID));
+            var f_selectedPlayerFaces = ExtensionMethods.GetFieldInfo(typeof(CharacterCreatorHandler), "selectedPlayerFaces");
             
             // replace skin[0] with skin[player.localID] in online lobbies
             for (int i = 1; i < instructions.Count() - 1; i++)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
-using UnboundLib;
+using Unbound.Core;
 
 namespace RWF.UI
 {
@@ -52,10 +52,10 @@ namespace RWF.UI
         {
             if (this.characterSelectionInstance == null) { return; }
 
-            if (this.characterSelectionInstance.isReady != this.isReady)
+            if (this.characterSelectionInstance.GetFieldValue<bool>("isReady") != isReady)
             {
-                this.isReady = this.characterSelectionInstance.isReady;
-                if (this.isReady)
+                isReady = this.characterSelectionInstance.GetFieldValue<bool>("isReady");
+                if (isReady)
                 {
                     this.text.color = CharacterSelectButton.disabledColor;
                 }

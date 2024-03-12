@@ -29,7 +29,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <RoundsFolder>C:\Program Files (x86)\Steam\steamapps\common\ROUNDS</RoundsFolder>
+    <RoundsFolder>F:\SteamLibrary\steamapps\common\ROUNDS</RoundsFolder>
     <IndirectBuildTask>true</IndirectBuildTask>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
     <LangVersion>7.1</LangVersion>
@@ -44,15 +44,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="UnboundLib" Version="2.11.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\Assemblies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>..\Assemblies\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="UnboundCards">
+      <HintPath>..\Assemblies\UnboundCards.dll</HintPath>
+    </Reference>
+    <Reference Include="UnboundGamemodes">
+      <HintPath>..\Assemblies\UnboundGamemodes.dll</HintPath>
+    </Reference>
+    <Reference Include="UnboundLib">
+      <HintPath>..\Assemblies\UnboundLib.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -60,11 +65,11 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="com.rlabrecque.steamworks.net">
+      <HintPath>$(RoundsFolder)\Rounds_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
+    </Reference>
     <Reference Include="InControl">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\InControl.dll</HintPath>
-    </Reference>
-    <Reference Include="MMHOOK_Assembly-CSharp">
-      <HintPath>..\Assemblies\MMHOOK_Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\Photon3Unity3D.dll</HintPath>
@@ -87,6 +92,9 @@
     <Reference Include="UnityEngine">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
+	  <Reference Include="UnityEngine.InputLegacyModule">
+		  <HintPath>$(RoundsFolder)\Rounds_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+	  </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
@@ -95,6 +103,9 @@
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Localization">
+      <HintPath>$(RoundsFolder)\Rounds_Data\Managed\Unity.Localization.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>

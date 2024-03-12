@@ -6,12 +6,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Sonigon;
 using System.Linq;
-using UnboundLib;
+
 using System;
 using System.Reflection.Emit;
 using RWF.Algorithms;
-using UnboundLib.Networking;
+
 using RWF.UI;
+using Unbound.Core.Networking;
+using Unbound.Core;
 
 namespace RWF.Patches
 {
@@ -183,11 +185,11 @@ namespace RWF.Patches
         {
             List<CodeInstruction> codes = instructions.ToList();
 
-            var f_simulated = UnboundLib.ExtensionMethods.GetFieldInfo(typeof(PlayerVelocity), "simulated");
-            var f_isKinematic = UnboundLib.ExtensionMethods.GetFieldInfo(typeof(PlayerVelocity), "isKinematic");
-            var f_player = UnboundLib.ExtensionMethods.GetFieldInfo(GetNestedMoveType(), "player");
+            var f_simulated = typeof(PlayerVelocity).GetFieldInfo("simulated");
+            var f_isKinematic = typeof(PlayerVelocity).GetFieldInfo("isKinematic");
+            var f_player = GetNestedMoveType().GetFieldInfo("player");
 
-            var m_setCollidersActive = UnboundLib.ExtensionMethods.GetMethodInfo(typeof(PlayerManager_Patch_Move), nameof(PlayerManager_Patch_Move.SetCollidersActive));
+            var m_setCollidersActive = typeof(PlayerManager_Patch_Move).GetMethodInfo(nameof(PlayerManager_Patch_Move.SetCollidersActive));
 
             // Patch to disable player's ObjectCollider for the entirety of the move
             int disable_index = -1;

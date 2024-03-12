@@ -8,7 +8,7 @@ using Photon.Realtime;
 using System.Reflection.Emit;
 using Landfall.Network;
 using SoundImplementation;
-using UnboundLib;
+using Unbound.Core;
 
 namespace RWF.Patches
 {
@@ -22,7 +22,7 @@ namespace RWF.Patches
             var newInstructions = new List<CodeInstruction>();
 
             var f_lobby = AccessTools.Field(typeof(NetworkConnectionHandler), "m_SteamLobby");
-            var m_leaveLobby = UnboundLib.ExtensionMethods.GetMethodInfo(typeof(ClientSteamLobby), "LeaveLobby");
+            var m_leaveLobby = ExtensionMethods.GetMethodInfo(typeof(ClientSteamLobby), "LeaveLobby");
 
             for (int i = 0; i < list.Count; i++)
             {

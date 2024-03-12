@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Linq;
 using TMPro;
-using UnboundLib;
-using UnboundLib.GameModes;
+using Unbound.Core;
+using Unbound.Gamemodes;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
