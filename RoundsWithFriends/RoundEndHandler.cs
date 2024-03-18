@@ -11,6 +11,7 @@ using Sonigon;
 using Unbound.Gamemodes;
 using Unbound.Core;
 using Unbound.Core.Networking;
+using RWF.UI;
 
 namespace RWF
 {
@@ -53,7 +54,9 @@ namespace RWF
                 else
                 {
                     string hostName = PhotonNetwork.CurrentRoom.Players.Values.First(p => p.IsMasterClient).NickName;
-                    UIHandler.instance.ShowJoinGameText($"WAITING FOR {hostName}", PlayerSkinBank.GetPlayerSkinColors(1).winText);
+                    var watingText = LocalizedStrings.WaittingForHostText;
+                    watingText.Arguments = new object[] { new Dictionary<string, string> { { "hostName", hostName } } };
+                    UIHandler.instance.ShowJoinGameText(watingText, PlayerSkinBank.GetPlayerSkinColors(1).winText);
                 }
 
                 MapManager.instance.LoadNextLevel(false, false);

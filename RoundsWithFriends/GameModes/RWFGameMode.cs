@@ -200,7 +200,7 @@ namespace RWF.GameModes
 
             GameManager.instance.battleOngoing = false;
 
-            UIHandler.instance.ShowJoinGameText("LETS GOO!", PlayerSkinBank.GetPlayerSkinColors(1).winText);
+            UIHandler.instance.ShowJoinGameText(LocalizedStrings.LetsGoText, PlayerSkinBank.GetPlayerSkinColors(1).winText);
             yield return new WaitForSecondsRealtime(0.25f);
             UIHandler.instance.HideJoinGameText();
 

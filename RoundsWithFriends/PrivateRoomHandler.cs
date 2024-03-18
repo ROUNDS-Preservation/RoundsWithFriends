@@ -895,7 +895,7 @@ namespace RWF
         [UnboundRPC]
         public static void StartGame()
         {
-            UIHandler.instance.ShowJoinGameText("LETS GOO!", PlayerSkinBank.GetPlayerSkinColors(1).winText);
+            UIHandler.instance.ShowJoinGameText(LocalizedStrings.LetsGoText, PlayerSkinBank.GetPlayerSkinColors(1).winText);
             
             // return Canvas to its original position
             PrivateRoomHandler.instance.gameObject.GetComponentInParent<Canvas>().sortingLayerName = "MostFront";
