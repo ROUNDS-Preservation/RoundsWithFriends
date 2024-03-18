@@ -61,28 +61,30 @@ namespace RWF.Patches
     }
 
     // The RemovePlayer method is declared but unimplemented, so we'll implement it here
-    [HarmonyPatch(typeof(PlayerAssigner), "RemovePlayer")]
-    class PlayerAssigner_Patch_RemovePlayer
-    {
-        static void Prefix(PlayerAssigner __instance, CharacterData player) {
-            var playingOnline = !PhotonNetwork.OfflineMode && player.isPlaying;
+    //naw, the implmented it now
+    
+    //[HarmonyPatch(typeof(PlayerAssigner), "RemovePlayer")]
+    //class PlayerAssigner_Patch_RemovePlayer
+    //{
+    //    static void Prefix(PlayerAssigner __instance, CharacterData player) {
+    //        var playingOnline = !PhotonNetwork.OfflineMode && player.isPlaying;
 
-            if (PhotonNetwork.OfflineMode || playingOnline) {
-                /* Things get pretty complicated when playing online. The game seems to end forcefully on disconnect so we'll ignore this case for now.
-                 * We also skip this when playing offline so that the controller can just be reconnected, though I'm not sure if that works.
-                 */
-                return;
-            }
+    //        if (PhotonNetwork.OfflineMode || playingOnline) {
+    //            /* Things get pretty complicated when playing online. The game seems to end forcefully on disconnect so we'll ignore this case for now.
+    //             * We also skip this when playing offline so that the controller can just be reconnected, though I'm not sure if that works.
+    //             */
+    //            return;
+    //        }
 
-            __instance.players.Remove(player);
-            PlayerManager.instance.RemovePlayer(player.player);
+    //        __instance.players.Remove(player);
+    //        PlayerManager.instance.RemovePlayer(player.player);
 
-            if (player.view.OwnerActorNr == PhotonNetwork.LocalPlayer.ActorNumber) {
-                PhotonNetwork.Destroy(player.view);
-                __instance.SetFieldValue("hasCreatedLocalPlayer", false);
-            }
-        }
-    }
+    //        if (player.view.OwnerActorNr == PhotonNetwork.LocalPlayer.ActorNumber) {
+    //            PhotonNetwork.Destroy(player.view);
+    //            __instance.SetFieldValue("hasCreatedLocalPlayer", false);
+    //        }
+    //    }
+    //}
 
     [HarmonyPatch(typeof(PlayerAssigner), "ClearPlayers")]
     class PlayerAssigner_Patch_RemovePlayers
