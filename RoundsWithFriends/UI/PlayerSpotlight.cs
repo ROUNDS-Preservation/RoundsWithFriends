@@ -36,8 +36,6 @@ namespace RWF.UI
                 PlayerSpotlight._Cam = MainCam.instance.cam.gameObject;
                 PlayerSpotlight._Cam.GetComponent<Camera>().cullingMask |= (1 << PlayerSpotlight.layer);
 
-                //UnityEngine.GameObject.Find("/Game/Visual/Rendering ").gameObject.GetComponent<CameraZoomHandler>().InvokeMethod("Start");
-
                 return PlayerSpotlight._Cam;
             }
         }

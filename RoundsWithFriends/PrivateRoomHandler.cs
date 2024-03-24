@@ -417,7 +417,7 @@ namespace RWF
             mainPageGo.AddComponent<RectTransform>();
             this.MainPage = mainPageGo.AddComponent<ListMenuPage>();
             this.MainPage.SetFieldValue("firstSelected", inviteListButton);
-            this.MainPage.Close();
+            this.MainPage.Hide();
         }
 
         public void HandleTeamRules()
