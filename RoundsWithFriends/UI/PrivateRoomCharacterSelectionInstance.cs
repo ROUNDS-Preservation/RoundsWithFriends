@@ -252,18 +252,18 @@ namespace RWF.UI
             for (int i = 0; i < this.buttons.Length; i++)
             {
                 this.buttons[i].transform.GetChild(4).gameObject.SetActive(true);
-                this.buttons[i].transform.GetChild(4).GetChild(0).gameObject.SetActive(this.GetFieldValue<bool>("isReady") || this.created);
-                this.buttons[i].transform.GetChild(4).GetChild(1).gameObject.SetActive(this.GetFieldValue<bool>("isReady") || this.created);
+                this.buttons[i].transform.GetChild(4).GetChild(0).gameObject.SetActive(isReady || this.created);
+                this.buttons[i].transform.GetChild(4).GetChild(1).gameObject.SetActive(isReady || this.created);
                 foreach (Graphic graphic in this.buttons[i].transform.GetChild(4).GetChild(0).GetComponentsInChildren<Graphic>(true))
                 {
-                    graphic.color = this.created ? Colors.Transparent(Colors.createdColor) : this.GetFieldValue<bool>("isReady") ? Colors.Transparent(Colors.readycolor) : Color.clear;
+                    graphic.color = this.created ? Colors.Transparent(Colors.createdColor) : isReady ? Colors.Transparent(Colors.readycolor) : Color.clear;
                 }
                 foreach (Graphic graphic in this.buttons[i].transform.GetChild(4).GetChild(1).GetComponentsInChildren<Graphic>(true))
                 {
-                    graphic.color = this.created ? Colors.Transparent(Colors.createdColor) : this.GetFieldValue<bool>("isReady") ? Colors.Transparent(Colors.readycolor) : Color.clear;
+                    graphic.color = this.created ? Colors.Transparent(Colors.createdColor) : isReady ? Colors.Transparent(Colors.readycolor) : Color.clear;
                 }
-                this.buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().text = this.created ? "IN GAME" : this.GetFieldValue<bool>("isReady") ? "READY" : "";
-                this.buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().color = this.created ? Colors.createdColor : this.GetFieldValue<bool>("isReady") ? Colors.readycolor : Colors.joinedcolor;
+                this.buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().text = this.created ? "IN GAME" : isReady ? "READY" : "";
+                this.buttons[i].transform.GetChild(4).GetChild(2).GetComponent<TextMeshProUGUI>().color = this.created ? Colors.createdColor : isReady ? Colors.readycolor : Colors.joinedcolor;
             }
         }
         public void Created()
@@ -299,7 +299,7 @@ namespace RWF.UI
                     this.ChangeToTeam(this.colorID);
                 }
             }
-            if (!this.currentPlayer.IsMine || !this.enableInput || this.GetFieldValue<bool>("isReady")) { return; }
+            if (!this.currentPlayer.IsMine || !this.enableInput || isReady) { return; }
 
             HoverEvent component = this.buttons[this.currentlySelectedFace].GetComponent<HoverEvent>();
             if (this.currentButton != component)

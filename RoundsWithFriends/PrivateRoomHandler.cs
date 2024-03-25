@@ -947,7 +947,7 @@ namespace RWF
                 this.gameObject.GetComponentInParent<Canvas>().sortingLayerName = "UI";
 
                 ListMenu.instance.OpenPage(this.MainPage);
-                this.MainPage.Open();
+                this.MainPage.Show();
                 ArtHandler.instance.NextArt();
             });
         }

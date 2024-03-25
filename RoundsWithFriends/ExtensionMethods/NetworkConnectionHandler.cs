@@ -6,6 +6,7 @@ using Landfall.Network;
 
 using HarmonyLib;
 using Unbound.Core;
+using Photon.Pun;
 
 namespace RWF
 {
@@ -41,8 +42,15 @@ namespace RWF
             options.IsOpen = true;
             options.IsVisible = false;
 
-            Action createRoomFn = () => instance.InvokeMethod("CreateRoom", options);
+            Action createRoomFn = () => CreateRWFRoom(options);
             instance.StartCoroutine((IEnumerator) instance.InvokeMethod("DoActionWhenConnected", createRoomFn));
+        }
+        public static void CreateRWFRoom(RoomOptions roomOptions)
+        {
+            ((ClientSteamLobby) typeof(NetworkConnectionHandler).GetField("m_SteamLobby",BindingFlags.Static|BindingFlags.NonPublic).GetValue(null)).CreateLobby(roomOptions.MaxPlayers, delegate (string RoomName)
+            {
+                PhotonNetwork.CreateRoom(RoomName, roomOptions, null, null);
+            });
         }
     }
 }
