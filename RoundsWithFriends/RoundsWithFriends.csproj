@@ -29,7 +29,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <RoundsFolder>K:\SteamLibrary\steamapps\common\ROUNDS</RoundsFolder>
+    <RoundsFolder>F:\SteamLibrary\steamapps\common\ROUNDS</RoundsFolder>
     <IndirectBuildTask>true</IndirectBuildTask>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
     <LangVersion>7.1</LangVersion>

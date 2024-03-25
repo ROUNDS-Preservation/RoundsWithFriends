@@ -9,6 +9,7 @@ using System.Reflection.Emit;
 using Landfall.Network;
 using SoundImplementation;
 using Unbound.Core;
+using UnityEngine;
 
 namespace RWF.Patches
 {
@@ -90,23 +91,19 @@ namespace RWF.Patches
     [HarmonyPatch(typeof(NetworkConnectionHandler), "ForceRegionJoin")]
     class NetworkConnectionHandler_Patch_ForceRegionJoin
     {
-        static bool Prefix(NetworkConnectionHandler __instance, string region, string room) {
-            if (PhotonNetwork.InRoom) {
-                PhotonNetwork.Disconnect();
-            }
-
-            CharacterCreatorHandler.instance.CloseMenus();
+        static void Postfix(NetworkConnectionHandler __instance, string region, string room) {
+            Debug.Log($"NetworkConnectionHandler {__instance}, string {region}, string {room}");
             PrivateRoomHandler.instance.Open();
+        }
+    }
 
-            RegionSelector.region = region;
-            TimeHandler.instance.gameStartTime = 1f;
-
-            __instance.SetForceRegion(true);
-
-            Action joinSpecificRoomDelegate = () => __instance.InvokeMethod("JoinSpecificRoom", room);
-            __instance.StartCoroutine((IEnumerator) __instance.InvokeMethod("DoActionWhenConnected", joinSpecificRoomDelegate));
-
-            // We'll replace the whole method
+    [HarmonyPatch(typeof(NetworkConnectionHandler), "JoinSpecificRoom")]
+    class NetworkConnectionHandler_Patch_JoinSpecificRoom
+    {
+        //We want to get around vanial room codes as they are braking our networking
+        static bool Prefix(NetworkConnectionHandler __instance, string roomCode) {
+            PhotonNetwork.JoinRoom(roomCode, null);
+            __instance.SetFieldValue("m_ForceRegion", false);
             return false;
         }
     }
