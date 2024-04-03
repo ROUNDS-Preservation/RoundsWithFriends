@@ -1,3 +1,37 @@
+# Deprecated, all development moving to https://github.com/ROUNDS-Preservation/UnboundLib/tree/Networking-RWF-Merge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Rounds With Friends
  
 A [ROUNDS](https://landfall.se/rounds) mod to extend the game's multiplayer capabilities, built for [BepInEx](https://github.com/BepInEx/BepInEx).
